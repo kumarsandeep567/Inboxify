@@ -1,34 +1,15 @@
-# Outlook Assistant
+# Inboxify - Email app powered by AI Agents
 
 ## Overview
-The Outlook Email Management Assistant enables users to efficiently manage their inboxes by leveraging OpenAI, Retrieval-Augmented Generation (RAG), natural language processing, and automation to streamline email management. It focuses on simplifying email management with features like query-based email interaction, email summarization, categorization, automatic responses to emails, real-time translation, and audio transcription for accessibility. By automating these tasks, this tool will help users save time, improve productivity, reduce email overload, and ensure they never miss crucial communications, all while enhancing accessibility for users with different needs.
+Inboxify enables users to efficiently manage their inboxes by leveraging OpenAI, Retrieval-Augmented Generation (RAG), Natural Language Processing, and automation to streamline email management. It focuses on simplifying email management with features like query-based email interaction, email summarization, categorization, automatic responses to emails, real-time translation, and audio transcription for accessibility. By automating these tasks, this tool will help users save time, improve productivity, reduce email overload, and ensure they never miss crucial communications, all while enhancing accessibility for users with different needs.
 
-## Links
+## Application Demo
+Watch the demo on YouTube: https://youtu.be/_GYDcoiDO7I
 
-### Application Links
-Streamlit: http://3.145.99.178:8501/      [SERVICE OFFLINE]
-
-FastAPI: http://3.145.99.178:8501/docs    [SERVICE OFFLINE]
-
-### Documentation
-Codelabs Link: https://codelabs-preview.appspot.com/?file_id=19F-oNrpfrvN73wmcrOozv6A72wKVv1PLru9mqvLXvps#0
-
-### Demo
-Demo Link: https://youtu.be/_GYDcoiDO7I
-
-## Attestation and Team Contribution
-**WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK**
-
-Name | NUID | Contribution% | Work_Contributed
---- | --- | --- | --- |
-Sandeep Suresh Kumar | 002841297 | 33% | Endpoints for Microsoft SignIn, Triggering Airflow, Vector Embeddings for mail contents, mail attachment contents, Endpoint for Chatbot, Prompt Agent, Langgraph Implementation to handle multiple agents, CI/CD, Email Categorization
-Deepthi Nasika       | 002474582 | 33% | Token responses, Fetching mails with Microsoft Graph API, Processing mail contents, attachment contents into database, Setup Airflow, Endpoints for Mails with folder, RAG agent, Auto Response Agent, Streamlit for connecting with Fastapi endpoints
-Gomathy Selvamuthiah | 002410534 | 33% | Processing Mail Attachments, Endpoints for fetching and loading mails, Summarization agent, Streamlit Pages for Mailbox UI, Chatbot Interface, Audio to Text and Text to Audio Translation, Refreshing Mails, Search functionality
-Ramy Solanki         | 002816593 | 33% |  Prompt Correction Functionality, JWT tokens, OpenAI TTS & OpenAI Whisper, Email Categorizor, Dockerization, Github Actions
 
 ## Workflow
 
-## Airflow
+### Airflow
 The Airflow pipeline streamlines the process of managing email data by automating tasks such as fetching emails, processing attachments, extracting content, and organizing data for efficient retrieval and analysis.
 1. Fetches emails using the Microsoft Graph API, authorized with an access token received from the FastAPI application. Extracted email contents are loaded into the Amazon RDS (PostgreSQL) database, following the defined database schema.
 2. Receives access token responses from FastAPI, formats the token response, and stores user details along with token information in Amazon RDS.
@@ -38,7 +19,7 @@ The Airflow pipeline streamlines the process of managing email data by automatin
 6. Uses the on-device Microsoft Phi-3 128k-instruct LLM model to categorize emails intelligently. Stores the categorized information of each email in Amazon RDS for easy filtering and prioritization.
 
 
-## FastAPI
+### FastAPI
 Acts as the backend service to integrate Milvus, Mulit-agentic architecture with Langgraph, and the Streamlit user interface. The endpoints are:
 1. SignIn - Microsoft Authentication
 2. AccessToken - Getting access token to make calls to Microsoft Graph API
@@ -50,7 +31,7 @@ Acts as the backend service to integrate Milvus, Mulit-agentic architecture with
 8. Chatbot - Fetches the user prompt with the selected email context and sends it to Langgraph which is then processed by the respective agent based on the user prompt. The response generated is displayed in the Streamlit Chatbot user interface
 
 
-## LangGraph (Agents):
+### LangGraph (Agents):
 Prompt Correction Agent: This agent takes the user’s prompt and passes it through a Large Language Model (LLM), which then rewrites the prompt to improve clarity and specificity for better results. To simplify the process, human approval for the regenerated prompt is skipped.
 
 Retrieval Augmented Generation (RAG) Agent: Instead of relying solely on semantic search, this agent utilizes similarity search for more precise context retrieval, enhancing the relevance of the results generated by the system. Attachments from emails are also taken into consideration when finding similarities.
@@ -59,17 +40,17 @@ Summarization Agent: This agent analyzes the content of an entire email thread i
 
 Response Agent: This agent processes the user’s response, generates a well-structured email, identifies the appropriate recipients, and automatically sends the email on behalf of the user.
 
-## Streamlit
+### Streamlit
 The Streamlit application provides an intuitive and interactive interface for users to explore their categorized mail, generate summaries for threads of mail, have a chatbot interaction with their mailbox, and also automate responses through it. It also provides a speech-to-text and text-to-speech feature for people with accessibility issues.
 
 ## Architecture Diagrams
 
 ### 1. Airflow Pipeline
 
-![Architecture Diagram](https://github.com/BigDataIA-Fall2024-TeamB6/FinalProject/blob/main/diagrams/airflowpipeline.png)
+![Architecture Diagram](https://github.com/kumarsandeep567/Inboxify/blob/main/diagrams/airflowpipeline.png)
 
 ### 2. Core Application
-![Architecture Diagram](https://github.com/BigDataIA-Fall2024-TeamB6/FinalProject/blob/main/diagrams/Corepipeline.png)
+![Architecture Diagram](https://github.com/kumarsandeep567/Inboxify/blob/main/diagrams/Corepipeline.png)
 
 ## Technologies
 [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org/)
@@ -98,9 +79,9 @@ Software Installations required for the project
 1. Python Environment
    A Python environment allows you to create isolated spaces for your Python projects, managing dependencies and versions separately
 2. Packages
-```bash
-pip install -r requirements.txt
-```
+	```bash
+	pip install -r requirements.txt
+	```
 3. Apache Airflow - Orchestrates the data pipeline, enabling automated workflows for data processing and integration
 4. Docker - provides a containerized environment to ensure consistent deployment and scalability of the application
 6. Amazon RDS (PostgreSQL) - Manages relational data storage and retrieval with high availability and scalability
@@ -111,7 +92,7 @@ pip install -r requirements.txt
 
 ## Project Structure
 ```
-project_root/
+project/
 │
 ├── airflow/                      
 │   └── dags/
@@ -191,7 +172,7 @@ project_root/
 1. **Clone the Repository**: Clone the repository onto your local machine and navigate to the directory within your terminal.
 
    ```bash
-   git clone https://github.com/BigDataIA-Fall2024-TeamB6/FinalProject.git
+   git clone https://github.com/kumarsandeep567/Inboxify.git
    ```
 
 2. **Install Docker**: Install docker and `docker compose` to run the application:
@@ -241,3 +222,12 @@ project_root/
    - visit `localhost:8501` to view the Streamlit application
    - visit `localhost:8000/docs` to view the FastAPI endpoint docs
 
+
+## Contributors
+- This project was made possible by the following contributors:
+
+Name | Contributions
+---  | --- 
+Sandeep Kumar  | Endpoints for Microsoft Sign-in, Triggering Airflow, Vector Embeddings for mail contents and mail attachments, Endpoint for Chatbot, Prompt Agent, LangGraph Implementation to handle multiple agents, CI/CD, Email Categorization with on-device Language Model
+Deepthi Nasika [(View Profile)](https://github.com/Deepthi-Nasika) | Token responses, Fetching mails with Microsoft Graph API, Processing mail contents, Loading attachment contents into database, Setup Airflow, Endpoints for Mails with folder, RAG agent, Auto Response Agent, Streamlit for connecting with Fastapi endpoints
+Gomathy Selvamuthiah [(View Profile)](https://github.com/GomathySelvamuthiah) | Processing Mail Attachments, Endpoints for fetching and loading mails, Summarization agent, Streamlit Pages for Mailbox UI, Chatbot Interface, Audio to Text (OpenAI Whisper) and Text to Audio (OpenAI TTS) Translation, Refreshing Mails, Search functionality
